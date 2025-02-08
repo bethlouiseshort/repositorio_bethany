@@ -1,0 +1,46 @@
+---
+title: "Archivo_Curso"
+author: "Bethany Louise Short"
+date: "r Sys.Date()"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Cargamos paquetes
+library(tidyr)
+library(dplyr)
+#Cargamos los datos
+data <- read.csv("C:/Users/beth2/Desktop/CURSO CIENCIA ABIERTA/1era TAREA/RESULTADOS LONGITUD TALLO.csv", sep = ";", header = FALSE)
+
+
+#Comprobamos la estructura de los datos
+View(data)
+summary(data)
+str(data)
+
+#Le damos nombre a las columnas
+colnames(data) <- c("Planta","Longitud_Tallo")
+
+#Convertimos la columna dos en numérico cambiando comas por puntos, pues con las comas no está reconociendo los datos en formato numérico.
+data$Longitud_Tallo <- as.numeric(gsub(",", ".", data$Longitud_Tallo))
+
+summary(data)
+str(data)
+```
+```{r}
+# Hacemos una representación gráfica de los datos de Longitud de Tallo
+barplot(data$Longitud_Tallo,
+        names.arg = data$Planta,
+        main = "Longitud del Tallo",
+        xlab = "Planta",
+        ylab = "Longitud del Tallo (mm)",
+        col = "blue",
+        las = 2)
+```
+
+
+
+
+
